@@ -14,6 +14,7 @@
 		331888261AF9A2E0006EB31B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 331888251AF9A2E0006EB31B /* Images.xcassets */; };
 		331888291AF9A2E0006EB31B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 331888271AF9A2E0006EB31B /* LaunchScreen.xib */; };
 		331888351AF9A2E0006EB31B /* YCXMenuDemo_ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 331888341AF9A2E0006EB31B /* YCXMenuDemo_ObjCTests.m */; };
+		331888411AF9A9B1006EB31B /* YCXMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 331888401AF9A9B1006EB31B /* YCXMenu.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		3318882E1AF9A2E0006EB31B /* YCXMenuDemo_ObjCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YCXMenuDemo_ObjCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		331888331AF9A2E0006EB31B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		331888341AF9A2E0006EB31B /* YCXMenuDemo_ObjCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCXMenuDemo_ObjCTests.m; sourceTree = "<group>"; };
+		3318883F1AF9A9B1006EB31B /* YCXMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCXMenu.h; sourceTree = "<group>"; };
+		331888401AF9A9B1006EB31B /* YCXMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCXMenu.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 		331888171AF9A2E0006EB31B /* YCXMenuDemo_ObjC */ = {
 			isa = PBXGroup;
 			children = (
+				3318883E1AF9A97C006EB31B /* YCXMenu */,
 				3318881C1AF9A2E0006EB31B /* AppDelegate.h */,
 				3318881D1AF9A2E0006EB31B /* AppDelegate.m */,
 				3318881F1AF9A2E0006EB31B /* ViewController.h */,
@@ -117,6 +121,15 @@
 				331888331AF9A2E0006EB31B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3318883E1AF9A97C006EB31B /* YCXMenu */ = {
+			isa = PBXGroup;
+			children = (
+				3318883F1AF9A9B1006EB31B /* YCXMenu.h */,
+				331888401AF9A9B1006EB31B /* YCXMenu.m */,
+			);
+			path = YCXMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				331888211AF9A2E0006EB31B /* ViewController.m in Sources */,
+				331888411AF9A9B1006EB31B /* YCXMenu.m in Sources */,
 				3318881E1AF9A2E0006EB31B /* AppDelegate.m in Sources */,
 				3318881B1AF9A2E0006EB31B /* main.m in Sources */,
 			);
