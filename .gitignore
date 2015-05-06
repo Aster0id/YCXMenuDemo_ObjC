@@ -1,0 +1,52 @@
+#
+#  .gitignore
+#  git忽略文件
+#
+
+# 配置语法：
+
+# 以斜杠“/”开头表示目录；
+# 以星号“*”通配多个字符；
+# 以问号“?”通配单个字符
+# 以方括号“[]”包含单个字符的匹配列表；
+# 以叹号“!”表示不忽略(跟踪)匹配到的文件或目录；
+# Ps. 此外，git 对于 .ignore 配置文件是按行从上到下进行规则匹配的，意味着如果前面的规则匹配的范围更大，则后面的规则将不会生效；
+
+# OS X
+#
+.DS_Store
+
+
+# Xcode
+#
+*/build/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+profile
+*.moved-aside
+DerivedData
+.idea/
+*.hmap
+
+
+# IDEs
+#
+*.xcworkspace
+!default.xcworkspace
+
+
+# Bundler files
+#
+# /.bundle
+
+
+#CocoaPods
+#
+Pods
