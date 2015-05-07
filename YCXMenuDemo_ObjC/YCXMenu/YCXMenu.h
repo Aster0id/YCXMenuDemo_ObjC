@@ -12,8 +12,8 @@
 typedef void(^YCXMenuSelectedItem)(NSInteger index, YCXMenuItem *item);
 
 typedef enum {
-    YCXMenuBackgrounColorEffectSolid      = 0, //!<纯色
-    YCXMenuBackgrounColorEffectGradient   = 1, //!<渐变叠加
+    YCXMenuBackgrounColorEffectSolid      = 0, //!<背景显示效果.纯色
+    YCXMenuBackgrounColorEffectGradient   = 1, //!<背景显示效果.渐变叠加
 } YCXMenuBackgrounColorEffect;
 
 @interface YCXMenu : NSObject
@@ -22,16 +22,19 @@ typedef enum {
 
 + (void)dismissMenu;
 
-
+// 主题色
 + (UIColor *)tintColor;
 + (void)setTintColor:(UIColor *)tintColor;
 
+// 标题字体
 + (UIFont *)titleFont;
 + (void)setTitleFont:(UIFont *)titleFont;
 
+// 背景效果
 + (YCXMenuBackgrounColorEffect)backgrounColorEffect;
 + (void)setBackgrounColorEffect:(YCXMenuBackgrounColorEffect)effect;
 
+// 是否显示阴影
 + (BOOL)hasShadow;
 + (void)setHasShadow:(BOOL)flag;
 

@@ -9,8 +9,10 @@
 #import "YCXMenu.h"
 #import <QuartzCore/QuartzCore.h>
 
-static CGFloat kArrowSize = 12.0f;    //!< 箭头尺寸
-static CGFloat kCornerRadius = 8.0f;  //!< 圆角
+#define kArrowSize      12.0f   //!< 箭头尺寸
+#define kCornerRadius   8.0f    //!< 圆角
+#define kTintColor  [UIColor colorWithRed:0.267 green:0.303 blue:0.335 alpha:1]  //!< 主题颜色
+#define kTitleFont  [UIFont systemFontOfSize:16.0]
 
 typedef enum {
     
@@ -43,6 +45,7 @@ typedef enum {
 
 @interface YCXMenu ()
 
+/// 重置属性
 + (void)reset;
 
 @end
@@ -304,7 +307,6 @@ typedef enum {
     const CGFloat kMarginY = 5.f;
     
     UIFont *titleFont = [YCXMenu titleFont];
-    if (!titleFont) titleFont = [UIFont boldSystemFontOfSize:16];
     
     CGFloat maxImageWidth = 0;
     CGFloat maxItemHeight = 0;
@@ -520,8 +522,8 @@ typedef enum {
 }
 
 - (void)drawBackground:(CGRect)frame inContext:(CGContextRef) context {
-    CGFloat R0 = 0.267, G0 = 0.303, B0 = 0.335;
-    CGFloat R1 = 0.040, G1 = 0.040, B1 = 0.040;
+    CGFloat R0 = 0.0, G0 = 0.0, B0 = 0.0;
+    CGFloat R1 = 0.0, G1 = 0.0, B1 = 0.0;
     
     UIColor *tintColor = [YCXMenu tintColor];
     if (tintColor) {
@@ -664,11 +666,16 @@ typedef enum {
 
 
 #pragma mark - YCXMenu
-static YCXMenu *gMenu;      //!< MenuView
-static UIColor *gTintColor; //!< 颜色
-static UIFont  *gTitleFont; //!< 字体
-static YCXMenuBackgrounColorEffect gBackgroundColorEffect; //!< 背景色效果
-static BOOL     gHasShadow; //!<有阴影
+/// MenuView
+static YCXMenu                      *gMenu;
+/// 背景色
+static UIColor                      *gTintColor;
+/// 字体
+static UIFont                       *gTitleFont;
+/// 背景色效果
+static YCXMenuBackgrounColorEffect   gBackgroundColorEffect = YCXMenuBackgrounColorEffectSolid;
+/// 是否显示阴影
+static BOOL                          gHasShadow = NO;
 
 @implementation YCXMenu {
     YCXMenuView *_menuView;
@@ -689,7 +696,7 @@ static BOOL     gHasShadow; //!<有阴影
     NSAssert(!gMenu, @"singleton object");
     self = [super init];
     if (self) {
-        [YCXMenu reset];
+
     }
     return self;
 }
@@ -702,20 +709,17 @@ static BOOL     gHasShadow; //!<有阴影
 
 #pragma mark Public Methods
 
-//+ (void)showMenuInView:(UIView *)view fromRect:(CGRect)rect menuItems:(NSArray *)menuItems {
-//    [[self sharedMenu] showMenuInView:view fromRect:rect menuItems:menuItems];
-//}
-
 + (void)showMenuInView:(UIView *)view fromRect:(CGRect)rect menuItems:(NSArray *)menuItems selected:(YCXMenuSelectedItem)selectedItem {
     [[self sharedMenu] showMenuInView:view fromRect:rect menuItems:menuItems selected:selectedItem];
 }
+
 + (void)dismissMenu {
     [[self sharedMenu] dismissMenu];
 }
 
 + (void)reset {
-    gTintColor = [UIColor colorWithRed:0.267 green:0.303 blue:0.335 alpha:1];
-    gTitleFont = [UIFont systemFontOfSize:16.0];
+    gTintColor = nil;
+    gTitleFont = nil;
     gBackgroundColorEffect = YCXMenuBackgrounColorEffectSolid;
     gHasShadow = NO;
 }
@@ -762,7 +766,7 @@ static BOOL     gHasShadow; //!<有阴影
 
 #pragma mark setter/getter
 + (UIColor *)tintColor {
-    return gTintColor;
+    return gTintColor?gTintColor:kTintColor;
 }
 
 + (void)setTintColor:(UIColor *)tintColor {
@@ -772,7 +776,7 @@ static BOOL     gHasShadow; //!<有阴影
 }
 
 + (UIFont *) titleFont {
-    return gTitleFont;
+    return gTitleFont?gTitleFont:kTitleFont;
 }
 
 + (void) setTitleFont: (UIFont *) titleFont {
