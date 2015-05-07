@@ -15,6 +15,7 @@
 		331888291AF9A2E0006EB31B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 331888271AF9A2E0006EB31B /* LaunchScreen.xib */; };
 		331888351AF9A2E0006EB31B /* YCXMenuDemo_ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 331888341AF9A2E0006EB31B /* YCXMenuDemo_ObjCTests.m */; };
 		331888411AF9A9B1006EB31B /* YCXMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 331888401AF9A9B1006EB31B /* YCXMenu.m */; };
+		331888441AF9AA89006EB31B /* YCXMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 331888431AF9AA89006EB31B /* YCXMenuItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		331888341AF9A2E0006EB31B /* YCXMenuDemo_ObjCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCXMenuDemo_ObjCTests.m; sourceTree = "<group>"; };
 		3318883F1AF9A9B1006EB31B /* YCXMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCXMenu.h; sourceTree = "<group>"; };
 		331888401AF9A9B1006EB31B /* YCXMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCXMenu.m; sourceTree = "<group>"; };
+		331888421AF9AA89006EB31B /* YCXMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCXMenuItem.h; sourceTree = "<group>"; };
+		331888431AF9AA89006EB31B /* YCXMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCXMenuItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 			children = (
 				3318883F1AF9A9B1006EB31B /* YCXMenu.h */,
 				331888401AF9A9B1006EB31B /* YCXMenu.m */,
+				331888421AF9AA89006EB31B /* YCXMenuItem.h */,
+				331888431AF9AA89006EB31B /* YCXMenuItem.m */,
 			);
 			path = YCXMenu;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				331888211AF9A2E0006EB31B /* ViewController.m in Sources */,
+				331888441AF9AA89006EB31B /* YCXMenuItem.m in Sources */,
 				331888411AF9A9B1006EB31B /* YCXMenu.m in Sources */,
 				3318881E1AF9A2E0006EB31B /* AppDelegate.m in Sources */,
 				3318881B1AF9A2E0006EB31B /* main.m in Sources */,
