@@ -13,15 +13,15 @@
 
 @property (readwrite, nonatomic, strong) UIImage      *image;
 @property (readwrite, nonatomic, strong) NSString     *title;
-@property (readwrite, nonatomic, assign) NSInteger    tag;
+@property (readwrite, nonatomic, assign) NSInteger     tag;
 @property (readwrite, nonatomic, strong) NSDictionary *userInfo;
 
-@property (readwrite, nonatomic, strong) UIFont *titleFont;
-@property (readwrite, nonatomic) NSTextAlignment alignment;
+@property (readwrite, nonatomic, strong) UIFont  *titleFont;
+@property (readwrite, nonatomic) NSTextAlignment  alignment;
 @property (readwrite, nonatomic, strong) UIColor *foreColor;
 
 @property (readwrite, nonatomic, weak) id target;
-@property (readwrite, nonatomic) SEL action;
+@property (readwrite, nonatomic) SEL      action;
 
 + (instancetype)menuTitle:(NSString *)title WithIcon:(UIImage *)icon;
 
