@@ -6,7 +6,7 @@
 <img src="https://github.com/Aster0id/YCXMenuDemo_ObjC/blob/master/Assets/YCXMenuDemo_ObjC_img2.gif" width="320">
 
 
-### Example USAGE
+### USAGE
 ``` objc
 
 	//set title
@@ -38,6 +38,6 @@
 ```
 
 
-## Licenses ##
+### Licenses
 
 MIT License.
