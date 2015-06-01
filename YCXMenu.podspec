@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 
   s.name = "YCXMenu"
   s.version = "0.0.1"
-  s.summary = "YCXMenu是一个弹出式菜单."
+  s.summary = "TCXMenu is an easy-to-use menu."
 
   s.homepage = "https://github.com/Aster0id/YCXMenuDemo_ObjC"
 
