@@ -2,7 +2,7 @@
 ![CocoaPods Version](https://img.shields.io/cocoapods/v/YCXMenu.svg?style=flat)
 [![License](https://img.shields.io/github/license/aster0id/YCXMenuDemo_ObjC.svg?style=flat)](https://github.com/Aster0id/YCXMenuDemo_ObjC/blob/master/LICENSE)
 
-简单方便的Menu控件, 参考[kxmenu](https://github.com/kolyvan/kxmenu/)效果
+`TCXMenu` is an easy-to-use menu. Reference [kxmenu](https://github.com/kolyvan/kxmenu/) effect
 
 <img src="https://github.com/Aster0id/YCXMenuDemo_ObjC/blob/master/Assets/YCXMenuDemo_ObjC_img1.gif" width="320">
 <img src="https://github.com/Aster0id/YCXMenuDemo_ObjC/blob/master/Assets/YCXMenuDemo_ObjC_img2.gif" width="320">
@@ -11,11 +11,17 @@
 ## Installation
 
 ### CocoaPods
+
 ```ruby
 # Your Podfile
 platform :ios, '7.0'
-pod 'JSPatch', '~> 0.0.1'
+pod 'XCYMenu', '~> 0.0.1'
 ```
+
+### Manually
+
+* Drag the `YCXMenu` folder into your project.
+* Add the **QuartzCore** framework to your project.
 
 
 ## Usage
