@@ -15,7 +15,7 @@
 ```ruby
 # Your Podfile
 platform :ios, '7.0'
-pod 'XCYMenu', '~> 0.0.1'
+pod 'YCXMenu', '~> 0.0.1'
 ```
 
 ### Manually
