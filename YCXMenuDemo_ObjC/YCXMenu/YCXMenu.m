@@ -290,7 +290,9 @@ typedef enum {
     UIButton *button = (UIButton *)sender;
     YCXMenuItem *menuItem = _menuItems[button.tag];
     [menuItem performAction];
+    if (_selectedItem) {
     _selectedItem(button.tag, menuItem);
+    }
 }
 
 - (UIView *) mkContentView {
