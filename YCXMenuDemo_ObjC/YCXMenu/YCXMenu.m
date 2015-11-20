@@ -45,6 +45,11 @@ typedef enum {
 
 @interface YCXMenu ()
 
++ (instancetype)sharedMenu;
+
+/// 视图当前是否显示
+@property(nonatomic, assign) BOOL isShow;
+
 /// 重置属性
 + (void)reset;
 
@@ -260,10 +265,11 @@ typedef enum {
                          
                      } completion:^(BOOL completed) {
                          _contentView.hidden = NO;
+                         
                      }];
 }
 
-- (void)dismissMenu:(BOOL) animated {
+- (void)dismissMenu:(BOOL)animated {
     if (self.superview) {
         if (animated) {
             _contentView.hidden = YES;
@@ -283,6 +289,7 @@ typedef enum {
             [self removeFromSuperview];
         }
     }
+    [YCXMenu sharedMenu].isShow = NO;
 }
 
 - (void)performAction:(id)sender {
@@ -291,7 +298,7 @@ typedef enum {
     YCXMenuItem *menuItem = _menuItems[button.tag];
     [menuItem performAction];
     if (_selectedItem) {
-    _selectedItem(button.tag, menuItem);
+        _selectedItem(button.tag, menuItem);
     }
 }
 
@@ -686,7 +693,7 @@ static BOOL                          gHasShadow = NO;
 
 #pragma mark System Methods
 
-+ (instancetype) sharedMenu {
++ (instancetype)sharedMenu {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         gMenu = [[YCXMenu alloc] init];
@@ -694,11 +701,11 @@ static BOOL                          gHasShadow = NO;
     return gMenu;
 }
 
-- (id) init {
+- (id)init {
     NSAssert(!gMenu, @"singleton object");
     self = [super init];
     if (self) {
-
+        self.isShow = NO;
     }
     return self;
 }
@@ -717,6 +724,10 @@ static BOOL                          gHasShadow = NO;
 
 + (void)dismissMenu {
     [[self sharedMenu] dismissMenu];
+}
+
++ (BOOL)isShow {
+    return [[self sharedMenu] isShow];
 }
 
 + (void)reset {
@@ -745,6 +756,7 @@ static BOOL                          gHasShadow = NO;
     // 创建MenuView
     _menuView = [[YCXMenuView alloc] init];
     [_menuView showMenuInView:view fromRect:rect menuItems:menuItems selected:selectedItem];
+    self.isShow = YES;
 }
 
 - (void)dismissMenu {
@@ -759,6 +771,7 @@ static BOOL                          gHasShadow = NO;
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 
+    self.isShow = NO;
 }
 
 #pragma mark Notification
@@ -777,11 +790,11 @@ static BOOL                          gHasShadow = NO;
     }
 }
 
-+ (UIFont *) titleFont {
++ (UIFont *)titleFont {
     return gTitleFont?gTitleFont:kTitleFont;
 }
 
-+ (void) setTitleFont: (UIFont *) titleFont {
++ (void)setTitleFont:(UIFont *)titleFont {
     if (titleFont != gTitleFont) {
         gTitleFont = titleFont;
     }

@@ -21,6 +21,7 @@ typedef enum {
 + (void)showMenuInView:(UIView *)view fromRect:(CGRect)rect menuItems:(NSArray *)menuItems selected:(YCXMenuSelectedItem)selectedItem;
 
 + (void)dismissMenu;
++ (BOOL)isShow;
 
 // 主题色
 + (UIColor *)tintColor;
@@ -37,5 +38,6 @@ typedef enum {
 // 是否显示阴影
 + (BOOL)hasShadow;
 + (void)setHasShadow:(BOOL)flag;
+
 
 @end
