@@ -15,7 +15,7 @@
 ```ruby
 # Your Podfile
 platform :ios, '7.0'
-pod 'YCXMenu', '~> 0.0.2'
+pod 'YCXMenu', '~> 0.0.3'
 ```
 
 ### Manually
@@ -55,7 +55,14 @@ pod 'YCXMenu', '~> 0.0.2'
 	
 ```
 
+##Change
 
-### Licenses
+###0.0.3
+
+- 添加 `+(BOOL)isShow` 方法, 可以根据此方法手动控制YCXMenu的显示和隐藏;
+- Add function `+(BOOL)isShow`, you can set show or hide YCXMenu expediently;
+
+ 
+## Licenses
 
 MIT License.
