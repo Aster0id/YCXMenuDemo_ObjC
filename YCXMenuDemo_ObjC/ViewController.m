@@ -35,9 +35,9 @@
         if ([YCXMenu isShow]){
             [YCXMenu dismissMenu];
         } else {
-        [YCXMenu showMenuInView:self.view fromRect:CGRectMake(self.view.frame.size.width - 50, 0, 50, 0) menuItems:self.items selected:^(NSInteger index, YCXMenuItem *item) {
-            NSLog(@"%@",item);
-        }];
+            [YCXMenu showMenuInView:self.view fromRect:CGRectMake(self.view.frame.size.width - 50, 0, 50, 0) menuItems:self.items selected:^(NSInteger index, YCXMenuItem *item) {
+                NSLog(@"%@",item);
+            }];
         }
     }
 }
