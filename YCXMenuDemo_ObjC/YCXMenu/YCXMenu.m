@@ -487,11 +487,6 @@ static UIColor                      *gSelectedColor;
  *  渐变颜色的图片
  */
 + (UIImage *)selectedImage:(CGSize)size {
-    //    const CGFloat locations[] = {0,1};
-    //    const CGFloat components[] = {
-    //        0.216, 0.471, 0.871, 1,
-    //        0.059, 0.353, 0.839, 1,
-    //    };
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     if(!gSelectedColor)
@@ -500,17 +495,9 @@ static UIColor                      *gSelectedColor;
     }
     CGContextSetFillColorWithColor(context, [gSelectedColor CGColor]);
     CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));
-    //    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    //    CGGradientRef colorGradient = CGGradientCreateWithColorComponents(colorSpace, components, locations, 2);
-    //    CGColorSpaceRelease(colorSpace);
-    //    CGContextDrawLinearGradient(context, colorGradient, (CGPoint){0, 0}, (CGPoint){size.width, 0}, 0);
-    //    CGGradientRelease(colorGradient);
-    
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
-    
-    //    return [self gradientImageWithSize:size locations:locations components:components count:2];
 }
 
 + (UIImage *)gradientLine:(CGSize)size {
