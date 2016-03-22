@@ -32,12 +32,13 @@
     // 通过NavigationBarItem显示Menu
     if (sender == self.navigationItem.rightBarButtonItem) {
         [YCXMenu setTintColor:[UIColor colorWithRed:0.118 green:0.573 blue:0.820 alpha:1]];
+        [YCXMenu setSelectedColor:[UIColor redColor]];
         if ([YCXMenu isShow]){
             [YCXMenu dismissMenu];
         } else {
-        [YCXMenu showMenuInView:self.view fromRect:CGRectMake(self.view.frame.size.width - 50, 0, 50, 0) menuItems:self.items selected:^(NSInteger index, YCXMenuItem *item) {
-            NSLog(@"%@",item);
-        }];
+            [YCXMenu showMenuInView:self.view fromRect:CGRectMake(self.view.frame.size.width - 50, 0, 50, 0) menuItems:self.items selected:^(NSInteger index, YCXMenuItem *item) {
+                NSLog(@"%@",item);
+            }];
         }
     }
 }

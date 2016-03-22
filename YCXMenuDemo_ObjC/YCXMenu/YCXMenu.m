@@ -37,7 +37,8 @@ typedef enum {
 
 @end
 
-
+/// 选中颜色（默认蓝色）
+static UIColor                      *gSelectedColor;
 
 @interface YCXMenuOverlay : UIView
 
@@ -388,7 +389,6 @@ typedef enum {
             [button addTarget:self
                        action:@selector(performAction:)
              forControlEvents:UIControlEventTouchUpInside];
-            
             [button setBackgroundImage:selectedImage forState:UIControlStateHighlighted];
             
             [itemView addSubview:button];
@@ -483,15 +483,21 @@ typedef enum {
     
     return point;
 }
-
+/**
+ *  渐变颜色的图片
+ */
 + (UIImage *)selectedImage:(CGSize)size {
-    const CGFloat locations[] = {0,1};
-    const CGFloat components[] = {
-        0.216, 0.471, 0.871, 1,
-        0.059, 0.353, 0.839, 1,
-    };
-    
-    return [self gradientImageWithSize:size locations:locations components:components count:2];
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    if(!gSelectedColor)
+    {
+        gSelectedColor = [UIColor colorWithRed:0.059 green:0.353 blue:0.839 alpha:1.0f];
+    }
+    CGContextSetFillColorWithColor(context, [gSelectedColor CGColor]);
+    CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 + (UIImage *)gradientLine:(CGSize)size {
@@ -686,6 +692,8 @@ static YCXMenuBackgrounColorEffect   gBackgroundColorEffect = YCXMenuBackgrounCo
 /// 是否显示阴影
 static BOOL                          gHasShadow = NO;
 
+
+
 @implementation YCXMenu {
     YCXMenuView *_menuView;
     BOOL         _observing;
@@ -735,6 +743,7 @@ static BOOL                          gHasShadow = NO;
     gTitleFont = nil;
     gBackgroundColorEffect = YCXMenuBackgrounColorEffectSolid;
     gHasShadow = NO;
+    gSelectedColor = [UIColor colorWithRed:0.059 green:0.353 blue:0.839 alpha:1.0f];
 }
 
 #pragma mark Private Methods
@@ -770,7 +779,7 @@ static BOOL                          gHasShadow = NO;
         _observing = NO;
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
-
+    
     self.isShow = NO;
 }
 
@@ -815,6 +824,14 @@ static BOOL                          gHasShadow = NO;
 + (void)setHasShadow:(BOOL)flag {
     gHasShadow = flag;
 }
-
++(UIColor *)selectedColor
+{
+    return gSelectedColor;
+    
+}
++(void)setSelectedColor:(UIColor *)selectedColor
+{
+    gSelectedColor = selectedColor;
+}
 @end
 

@@ -39,5 +39,7 @@ typedef enum {
 + (BOOL)hasShadow;
 + (void)setHasShadow:(BOOL)flag;
 
-
+// 选中颜色
++ (UIColor*)selectedColor;
++ (void)setSelectedColor:(UIColor*)selectedColor;
 @end
