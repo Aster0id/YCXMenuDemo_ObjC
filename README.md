@@ -61,7 +61,7 @@ pod 'YCXMenu', '~> 0.0.4'
 
 - 添加`+(UIColor*)setSelectedColor`方法，可以根据此方法控制选择的`Item`颜色,默认蓝色;
 - Add function `+(UIColor*)setSelectedColor;`,you can use this function to set item's selected Color,default blue;
-- 
+
 ###0.0.3
 
 - 添加 `+(BOOL)isShow` 方法, 可以根据此方法手动控制YCXMenu的显示和隐藏;
