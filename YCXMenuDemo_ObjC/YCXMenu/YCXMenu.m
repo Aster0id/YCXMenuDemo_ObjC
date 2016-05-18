@@ -614,7 +614,7 @@ static UIColor                      *gSelectedColor;
         
         [[UIColor colorWithRed:R0 green:G0 blue:B0 alpha:1] set];
         
-        X0 += kArrowSize;
+        X0 += [YCXMenu arrowSize];
         
     } else if (_arrowDirection == YCXMenuViewArrowDirectionRight) {
         
@@ -640,7 +640,7 @@ static UIColor                      *gSelectedColor;
     const CGRect bodyFrame = {X0, Y0, X1 - X0, Y1 - Y0};
     
     UIBezierPath *borderPath = [UIBezierPath bezierPathWithRoundedRect:bodyFrame
-                                                          cornerRadius:kCornerRadius];
+                                                          cornerRadius:[YCXMenu cornerRadius]];
     
     const CGFloat locations[] = {0, 1};
     const CGFloat components[] = {
@@ -687,6 +687,8 @@ static YCXMenu                      *gMenu;
 static UIColor                      *gTintColor;
 /// 箭头尺寸
 CGFloat                             gArrowSize;
+/// 圆角
+CGFloat                             gCornerRadius;
 /// 字体
 static UIFont                       *gTitleFont;
 /// 背景色效果
@@ -744,6 +746,7 @@ static BOOL                          gHasShadow = NO;
     gTintColor = nil;
     gTitleFont = nil;
     gArrowSize = kArrowSize;
+    gCornerRadius = kCornerRadius;
     gBackgroundColorEffect = YCXMenuBackgrounColorEffectSolid;
     gHasShadow = NO;
     gSelectedColor = [UIColor colorWithRed:0.059 green:0.353 blue:0.839 alpha:1.0f];
@@ -799,6 +802,16 @@ static BOOL                          gHasShadow = NO;
 + (void)setTintColor:(UIColor *)tintColor {
     if (tintColor != gTintColor) {
         gTintColor = tintColor;
+    }
+}
+
++ (CGFloat)cornerRadius {
+    return gCornerRadius >0?gCornerRadius:kCornerRadius;
+}
+
++ (void)setCornerRadius:(CGFloat)cornerRadius {
+    if (cornerRadius > 0) {
+        gCornerRadius = cornerRadius;
     }
 }
 
