@@ -9,8 +9,8 @@
 #import "YCXMenu.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define kArrowSize      12.0f   //!< 箭头尺寸
-#define kCornerRadius   8.0f    //!< 圆角
+#define kArrowSize      10.0f   //!< 箭头尺寸
+#define kCornerRadius   6.0f    //!< 圆角
 #define kTintColor  [UIColor colorWithRed:0.267 green:0.303 blue:0.335 alpha:1]  //!< 主题颜色
 #define kTitleFont  [UIFont systemFontOfSize:16.0]
 

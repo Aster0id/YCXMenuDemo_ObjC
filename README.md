@@ -15,7 +15,7 @@
 ```ruby
 # Your Podfile
 platform :ios, '7.0'
-pod 'YCXMenu', '~> 0.0.4'
+pod 'YCXMenu', '~> 0.0.5'
 ```
 
 ### Manually
@@ -56,6 +56,14 @@ pod 'YCXMenu', '~> 0.0.4'
 ```
 
 ##Change
+
+###0.0.5
+
+- 添加`+(void)setCornerRadius:(CGFloat)cornerRadius;`方法，可以根据此方法控制选择的`Item`圆角,默认 6.0f;
+- Add function `+(void)setCornerRadius:(CGFloat)cornerRadius;`, you can use this function to set item's corner radius, default 6.0f;
+
+- 添加`+(void)setArrowSize:(CGFloat)arrowSize;`方法，可以根据此方法控制选择的`Item`箭头尺寸,默认 10.0f;
+- Add function `+(void)setArrowSize:(CGFloat)arrowSize;`, you can use this function to set item's arrow size, default 10.0f;
 
 ###0.0.4
 

@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.name = "YCXMenu"
-  s.version = "0.0.4"
+  s.version = "0.0.5"
   s.summary = "TCXMenu is an easy-to-use menu."
 
   s.homepage = "https://github.com/Aster0id/YCXMenuDemo_ObjC"
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
 
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.source = { :git => "https://github.com/Aster0id/YCXMenuDemo_ObjC.git", :tag => "0.0.4" }
+  s.source = { :git => "https://github.com/Aster0id/YCXMenuDemo_ObjC.git", :tag => "0.0.5" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
