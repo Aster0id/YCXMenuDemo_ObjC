@@ -58,6 +58,7 @@
     if ([sender isKindOfClass:[UIButton class]]) {
         UIButton *btn = sender;
         [YCXMenu setHasShadow:NO];
+        [YCXMenu setArrowSize:4];
         [YCXMenu setBackgrounColorEffect:YCXMenuBackgrounColorEffectSolid];
         [YCXMenu setTintColor:[UIColor colorWithRed:0.212 green:0.255 blue:0.678 alpha:1]];
         [YCXMenu showMenuInView:self.view fromRect:btn.frame menuItems:self.items selected:^(NSInteger index, YCXMenuItem *item) {

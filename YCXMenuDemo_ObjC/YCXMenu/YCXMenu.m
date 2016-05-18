@@ -126,8 +126,8 @@ static UIColor                      *gSelectedColor;
     const CGFloat rectY1 = fromRect.origin.y + fromRect.size.height;
     const CGFloat rectYM = fromRect.origin.y + fromRect.size.height * 0.5f;;
     
-    const CGFloat widthPlusArrow = contentSize.width + kArrowSize;
-    const CGFloat heightPlusArrow = contentSize.height + kArrowSize;
+    const CGFloat widthPlusArrow = contentSize.width + [YCXMenu arrowSize];
+    const CGFloat heightPlusArrow = contentSize.height + [YCXMenu arrowSize];
     const CGFloat widthHalf = contentSize.width * 0.5f;
     const CGFloat heightHalf = contentSize.height * 0.5f;
     
@@ -148,13 +148,13 @@ static UIColor                      *gSelectedColor;
             point.x = outerWidth - contentSize.width - kMargin;
         
         _arrowPosition = rectXM - point.x;
-        _contentView.frame = (CGRect){0, kArrowSize, contentSize};
+        _contentView.frame = (CGRect){0, [YCXMenu arrowSize], contentSize};
         
         self.frame = (CGRect) {
             
             point,
             contentSize.width,
-            contentSize.height + kArrowSize
+            contentSize.height + [YCXMenu arrowSize]
         };
         
     } else if (heightPlusArrow < rectY0) {
@@ -178,7 +178,7 @@ static UIColor                      *gSelectedColor;
             
             point,
             contentSize.width,
-            contentSize.height + kArrowSize
+            contentSize.height + [YCXMenu arrowSize]
         };
         
     } else if (widthPlusArrow < (outerWidth - rectX1)) {
@@ -196,12 +196,12 @@ static UIColor                      *gSelectedColor;
             point.y = outerHeight - contentSize.height - kMargin;
         
         _arrowPosition = rectYM - point.y;
-        _contentView.frame = (CGRect){kArrowSize, 0, contentSize};
+        _contentView.frame = (CGRect){[YCXMenu arrowSize], 0, contentSize};
         
         self.frame = (CGRect) {
             
             point,
-            contentSize.width + kArrowSize,
+            contentSize.width + [YCXMenu arrowSize],
             contentSize.height
         };
         
@@ -225,7 +225,7 @@ static UIColor                      *gSelectedColor;
         self.frame = (CGRect) {
             
             point,
-            contentSize.width  + kArrowSize,
+            contentSize.width  + [YCXMenu arrowSize],
             contentSize.height
         };
         
@@ -568,10 +568,10 @@ static UIColor                      *gSelectedColor;
     if (_arrowDirection == YCXMenuViewArrowDirectionUp) {
         
         const CGFloat arrowXM = _arrowPosition;
-        const CGFloat arrowX0 = arrowXM - kArrowSize;
-        const CGFloat arrowX1 = arrowXM + kArrowSize;
+        const CGFloat arrowX0 = arrowXM - [YCXMenu arrowSize];
+        const CGFloat arrowX1 = arrowXM + [YCXMenu arrowSize];
         const CGFloat arrowY0 = Y0;
-        const CGFloat arrowY1 = Y0 + kArrowSize + kEmbedFix;
+        const CGFloat arrowY1 = Y0 + [YCXMenu arrowSize] + kEmbedFix;
         
         [arrowPath moveToPoint:    (CGPoint){arrowXM, arrowY0}];
         [arrowPath addLineToPoint: (CGPoint){arrowX1, arrowY1}];
@@ -580,14 +580,14 @@ static UIColor                      *gSelectedColor;
         
         [[UIColor colorWithRed:R0 green:G0 blue:B0 alpha:1] set];
         
-        Y0 += kArrowSize;
+        Y0 += [YCXMenu arrowSize];
         
     } else if (_arrowDirection == YCXMenuViewArrowDirectionDown) {
         
         const CGFloat arrowXM = _arrowPosition;
-        const CGFloat arrowX0 = arrowXM - kArrowSize;
-        const CGFloat arrowX1 = arrowXM + kArrowSize;
-        const CGFloat arrowY0 = Y1 - kArrowSize - kEmbedFix;
+        const CGFloat arrowX0 = arrowXM - [YCXMenu arrowSize];
+        const CGFloat arrowX1 = arrowXM + [YCXMenu arrowSize];
+        const CGFloat arrowY0 = Y1 - [YCXMenu arrowSize] - kEmbedFix;
         const CGFloat arrowY1 = Y1;
         
         [arrowPath moveToPoint:    (CGPoint){arrowXM, arrowY1}];
@@ -597,15 +597,15 @@ static UIColor                      *gSelectedColor;
         
         [[UIColor colorWithRed:R1 green:G1 blue:B1 alpha:1] set];
         
-        Y1 -= kArrowSize;
+        Y1 -= [YCXMenu arrowSize];
         
     } else if (_arrowDirection == YCXMenuViewArrowDirectionLeft) {
         
         const CGFloat arrowYM = _arrowPosition;
         const CGFloat arrowX0 = X0;
-        const CGFloat arrowX1 = X0 + kArrowSize + kEmbedFix;
-        const CGFloat arrowY0 = arrowYM - kArrowSize;;
-        const CGFloat arrowY1 = arrowYM + kArrowSize;
+        const CGFloat arrowX1 = X0 + [YCXMenu arrowSize] + kEmbedFix;
+        const CGFloat arrowY0 = arrowYM - [YCXMenu arrowSize];;
+        const CGFloat arrowY1 = arrowYM + [YCXMenu arrowSize];
         
         [arrowPath moveToPoint:    (CGPoint){arrowX0, arrowYM}];
         [arrowPath addLineToPoint: (CGPoint){arrowX1, arrowY0}];
@@ -620,9 +620,9 @@ static UIColor                      *gSelectedColor;
         
         const CGFloat arrowYM = _arrowPosition;
         const CGFloat arrowX0 = X1;
-        const CGFloat arrowX1 = X1 - kArrowSize - kEmbedFix;
-        const CGFloat arrowY0 = arrowYM - kArrowSize;;
-        const CGFloat arrowY1 = arrowYM + kArrowSize;
+        const CGFloat arrowX1 = X1 - [YCXMenu arrowSize] - kEmbedFix;
+        const CGFloat arrowY0 = arrowYM - [YCXMenu arrowSize];;
+        const CGFloat arrowY1 = arrowYM + [YCXMenu arrowSize];
         
         [arrowPath moveToPoint:    (CGPoint){arrowX0, arrowYM}];
         [arrowPath addLineToPoint: (CGPoint){arrowX1, arrowY0}];
@@ -631,7 +631,7 @@ static UIColor                      *gSelectedColor;
         
         [[UIColor colorWithRed:R1 green:G1 blue:B1 alpha:1] set];
         
-        X1 -= kArrowSize;
+        X1 -= [YCXMenu arrowSize];
     }
     
     [arrowPath fill];
@@ -685,6 +685,8 @@ static UIColor                      *gSelectedColor;
 static YCXMenu                      *gMenu;
 /// 背景色
 static UIColor                      *gTintColor;
+/// 箭头尺寸
+CGFloat                             gArrowSize;
 /// 字体
 static UIFont                       *gTitleFont;
 /// 背景色效果
@@ -741,6 +743,7 @@ static BOOL                          gHasShadow = NO;
 + (void)reset {
     gTintColor = nil;
     gTitleFont = nil;
+    gArrowSize = kArrowSize;
     gBackgroundColorEffect = YCXMenuBackgrounColorEffectSolid;
     gHasShadow = NO;
     gSelectedColor = [UIColor colorWithRed:0.059 green:0.353 blue:0.839 alpha:1.0f];
@@ -796,6 +799,16 @@ static BOOL                          gHasShadow = NO;
 + (void)setTintColor:(UIColor *)tintColor {
     if (tintColor != gTintColor) {
         gTintColor = tintColor;
+    }
+}
+
++ (CGFloat)arrowSize {
+    return gArrowSize > 0?gArrowSize:kArrowSize;
+}
+
++ (void)setArrowSize:(CGFloat)arrowSize {
+    if (arrowSize > 0) {
+        gArrowSize = arrowSize;
     }
 }
 

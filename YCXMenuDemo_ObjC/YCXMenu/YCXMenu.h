@@ -27,6 +27,14 @@ typedef enum {
 + (UIColor *)tintColor;
 + (void)setTintColor:(UIColor *)tintColor;
 
+// 圆角
++ (CGFloat)cornerRadius;
++ (void)setCornerRadius:(CGFloat)cornerRadius;
+
+// 箭头尺寸
++ (CGFloat)arrowSize;
++ (void)setArrowSize:(CGFloat)arrowSize;
+
 // 标题字体
 + (UIFont *)titleFont;
 + (void)setTitleFont:(UIFont *)titleFont;
