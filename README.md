@@ -15,7 +15,7 @@
 ```ruby
 # Your Podfile
 platform :ios, '7.0'
-pod 'YCXMenu', '~> 0.0.7'
+pod 'YCXMenu', '~> 0.0.9'
 ```
 
 ### Manually
@@ -57,7 +57,7 @@ pod 'YCXMenu', '~> 0.0.7'
 
 ##Change
 
-###0.0.8
+###0.0.9
 
 - 添加`+(void)setMenuItemMarginY:`方法，可以根据此方法控制菜单中每个元素在垂直方向上的内边距值,默认 12.0f;
 - Add function `+(void)setMenuItemMarginY:`, you can use this function to set item's margin, default 12.0f;
