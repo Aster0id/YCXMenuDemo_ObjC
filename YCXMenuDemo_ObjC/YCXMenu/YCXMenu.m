@@ -911,7 +911,7 @@ static YCXMenu                      *gMenu;
 }
 +(void)setMenuItemMarginY:(CGFloat)menuItemMarginY {
     if (menuItemMarginY > 0) {
-        gCornerRadius = menuItemMarginY;
+        gMenuItemMarginY = menuItemMarginY;
     }
 }
 
