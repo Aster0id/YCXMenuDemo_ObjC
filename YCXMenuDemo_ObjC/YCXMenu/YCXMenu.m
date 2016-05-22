@@ -382,11 +382,8 @@ typedef enum {
     const CGFloat titleWidth = maxItemWidth - titleX - kMarginX * 2;
     
     UIImage *selectedImage = [YCXMenuView selectedImage:(CGSize){maxItemWidth, maxItemHeight}];
-    
-    if (!gSeparatorColor) {
-        gSeparatorColor = kSeparatorColor;
-    }
-    UIImage *gradientLine = [YCXMenuView gradientLineWithColor:gSeparatorColor];
+
+    UIImage *gradientLine = [YCXMenuView gradientLineWithColor:[YCXMenu separatorColor]];
     
     UIView *contentView = [[UIView alloc] initWithFrame:CGRectZero];
     contentView.autoresizingMask = UIViewAutoresizingNone;
@@ -524,10 +521,7 @@ typedef enum {
 + (UIImage *)selectedImage:(CGSize)size {
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    if(!gSelectedColor) {
-        gSelectedColor = kSelectedColor;
-    }
-    CGContextSetFillColorWithColor(context, [gSelectedColor CGColor]);
+    CGContextSetFillColorWithColor(context, [[YCXMenu selectedColor] CGColor]);
     CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -893,22 +887,18 @@ static YCXMenu                      *gMenu;
 + (void)setHasShadow:(BOOL)flag {
     gHasShadow = flag;
 }
-+(UIColor *)selectedColor
-{
-    return gSelectedColor;
-    
+
++(UIColor *)selectedColor {
+    return gSelectedColor?gSelectedColor:kSelectedColor;
 }
-+(void)setSelectedColor:(UIColor *)selectedColor
-{
++(void)setSelectedColor:(UIColor *)selectedColor {
     gSelectedColor = selectedColor;
 }
-+(UIColor *)separatorColor
-{
-    return gSeparatorColor;
 
++(UIColor *)separatorColor {
+    return gSeparatorColor?gSeparatorColor:kSeparatorColor;
 }
-+(void)setSeparatorColor:(UIColor *)separatorColor
-{
++(void)setSeparatorColor:(UIColor *)separatorColor {
     gSeparatorColor = separatorColor;
 }
 
