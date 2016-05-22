@@ -55,4 +55,8 @@ typedef enum {
 + (UIColor*)separatorColor;
 + (void)setSeparatorColor:(UIColor*)separatorColor;
 
+/// 菜单元素垂直方向上的边距值
++ (CGFloat)menuItemMarginY;
++ (void)setMenuItemMarginY:(CGFloat)menuItemMarginY;
+
 @end

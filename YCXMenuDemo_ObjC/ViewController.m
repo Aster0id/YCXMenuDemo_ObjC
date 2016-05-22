@@ -89,7 +89,7 @@
         [YCXMenu setBackgrounColorEffect:YCXMenuBackgrounColorEffectGradient];
         [YCXMenu setTintColor:[UIColor colorWithRed:0.212 green:0.255 blue:0.678 alpha:1]];
         [YCXMenu setSeparatorColor:[UIColor redColor]];
-        
+        [YCXMenu setMenuItemMarginY:20];
         [YCXMenu setTitleFont:[UIFont systemFontOfSize:24.0]];
         [YCXMenu showMenuInView:self.view fromRect:btn.frame menuItems:self.items selected:^(NSInteger index, YCXMenuItem *item) {
             NSLog(@"%@",item);

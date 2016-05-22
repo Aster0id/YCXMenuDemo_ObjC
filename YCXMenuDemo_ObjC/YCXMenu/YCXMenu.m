@@ -22,28 +22,30 @@
 #define kMenuViewInsetTop       0
 #define kMenuViewInsetBottom    0
 
-/// 菜单原始的垂直边距值
-const CGFloat kMenuItemMarginY = 8.f;
+const CGFloat kMenuItemMarginY = 12.f;
 
 
 /// 背景色
-static UIColor                      *gTintColor;
+static UIColor  *gTintColor;
 /// 箭头尺寸
-CGFloat                             gArrowSize = kArrowSize;
+static CGFloat  gArrowSize = kArrowSize;
 /// 圆角
-CGFloat                             gCornerRadius = kCornerRadius;
+CGFloat         gCornerRadius = kCornerRadius;
 /// 字体
-static UIFont                       *gTitleFont;
+static UIFont   *gTitleFont;
 /// 背景色效果
 static YCXMenuBackgrounColorEffect   gBackgroundColorEffect = YCXMenuBackgrounColorEffectSolid;
 /// 是否显示阴影
-static BOOL                          gHasShadow = NO;
+static BOOL     gHasShadow = NO;
 /// 选中颜色（默认蓝色）
-static UIColor                      *gSelectedColor;
+static UIColor  *gSelectedColor;
 /// 分割线颜色
-static UIColor                      *gSeparatorColor;
+static UIColor  *gSeparatorColor;
+/// 菜单原始的垂直边距值
+static CGFloat  gMenuItemMarginY = kMenuItemMarginY;
 
 //@property (nonatomic) UIEdgeInsets separatorInset NS_AVAILABLE_IOS(7_0) UI_APPEARANCE_SELECTOR; // allows customization of the frame of cell separators
+
 typedef enum {
     
     YCXMenuViewArrowDirectionNone,
@@ -365,7 +367,7 @@ typedef enum {
         //const CGSize titleSize = [menuItem.title sizeWithFont:titleFont];
         const CGSize imageSize = menuItem.image.size;
         
-        const CGFloat itemHeight = MAX(titleSize.height, imageSize.height) + kMenuItemMarginY * 2;
+        const CGFloat itemHeight = MAX(titleSize.height, imageSize.height) + [YCXMenu menuItemMarginY] * 2;
         const CGFloat itemWidth = ((!menuItem.enabled && !menuItem.image) ? titleSize.width : maxImageWidth + titleSize.width) + kMarginX * 4;
         
         if (itemHeight > maxItemHeight)
@@ -432,18 +434,18 @@ typedef enum {
                 
                 titleFrame = (CGRect){
                     kMarginX * 2,
-                    kMenuItemMarginY,
+                    [YCXMenu menuItemMarginY],
                     maxItemWidth - kMarginX * 4,
-                    maxItemHeight - kMenuItemMarginY * 2
+                    maxItemHeight - [YCXMenu menuItemMarginY] * 2
                 };
                 
             } else {
                 
                 titleFrame = (CGRect){
                     titleX,
-                    kMenuItemMarginY,
+                    [YCXMenu menuItemMarginY],
                     titleWidth,
-                    maxItemHeight - kMenuItemMarginY * 2
+                    maxItemHeight - [YCXMenu menuItemMarginY] * 2
                 };
             }
             
@@ -459,7 +461,7 @@ typedef enum {
         
         if (menuItem.image) {
             
-            const CGRect imageFrame = {kMarginX * 2, kMenuItemMarginY, maxImageWidth, maxItemHeight - kMenuItemMarginY * 2};
+            const CGRect imageFrame = {kMarginX * 2, [YCXMenu menuItemMarginY], maxImageWidth, maxItemHeight - [YCXMenu menuItemMarginY] * 2};
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
             imageView.image = menuItem.image;
             imageView.clipsToBounds = YES;
@@ -900,6 +902,17 @@ static YCXMenu                      *gMenu;
 }
 +(void)setSeparatorColor:(UIColor *)separatorColor {
     gSeparatorColor = separatorColor;
+}
+
+
+/// 菜单元素垂直方向上的边距值
++ (CGFloat)menuItemMarginY {
+    return gMenuItemMarginY > 0?gMenuItemMarginY:kMenuItemMarginY;
+}
++(void)setMenuItemMarginY:(CGFloat)menuItemMarginY {
+    if (menuItemMarginY > 0) {
+        gCornerRadius = menuItemMarginY;
+    }
 }
 
 @end

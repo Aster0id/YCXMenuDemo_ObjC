@@ -57,10 +57,15 @@ pod 'YCXMenu', '~> 0.0.7'
 
 ##Change
 
+###0.0.8
+
+- 添加`+(void)setMenuItemMarginY:`方法，可以根据此方法控制菜单中每个元素在垂直方向上的内边距值,默认 12.0f;
+- Add function `+(void)setMenuItemMarginY:`, you can use this function to set item's margin, default 12.0f;
+
 ###0.0.7
 
-- 添加`+(void)setSeparatorColor:(CGFloat)separatorColor;`方法，可以根据此方法控制分割线的颜色,默认 [UIColor colorWithRed:0.44 green:0.44 blue:0.44 alpha:1];
-- Add function `+(void)setCornerRadius:(CGFloat)cornerRadius;`, you can use this function to set menu's separator color, default [UIColor colorWithRed:0.44 green:0.44 blue:0.44 alpha:1];
+- 添加`+(void)setSeparatorColor:`方法，可以根据此方法控制分割线的颜色,默认 [UIColor colorWithRed:0.44 green:0.44 blue:0.44 alpha:1];
+- Add function `+(void)setSeparatorColor:`, you can use this function to set menu's separator color, default [UIColor colorWithRed:0.44 green:0.44 blue:0.44 alpha:1];
 
 ###0.0.5
 
