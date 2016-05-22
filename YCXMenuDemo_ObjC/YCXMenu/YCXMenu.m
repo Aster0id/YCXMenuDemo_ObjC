@@ -379,7 +379,7 @@ typedef enum {
     const CGFloat titleX = kMarginX * 2 + maxImageWidth;
     const CGFloat titleWidth = maxItemWidth - titleX - kMarginX * 2;
     
-    UIImage *selectedImage = [YCXMenuView selectedImage:(CGSize){maxItemWidth, maxItemHeight + 2}];
+    UIImage *selectedImage = [YCXMenuView selectedImage:(CGSize){maxItemWidth, maxItemHeight}];
     
     if (!gSeparatorColor) {
         gSeparatorColor = kSeparatorColor;
