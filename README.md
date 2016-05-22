@@ -15,7 +15,7 @@
 ```ruby
 # Your Podfile
 platform :ios, '7.0'
-pod 'YCXMenu', '~> 0.0.5'
+pod 'YCXMenu', '~> 0.0.7'
 ```
 
 ### Manually
@@ -31,12 +31,12 @@ pod 'YCXMenu', '~> 0.0.5'
 	YCXMenuItem *menuTitle = [YCXMenuItem menuTitle:@"Menu" WithIcon:nil];
 	menuTitle.foreColor = [UIColor whiteColor];
 	menuTitle.titleFont = [UIFont boldSystemFontOfSize:20.0f];
-        
+
 	//set logout button
 	YCXMenuItem *logoutItem = [YCXMenuItem menuItem:@"Logout" image:nil target:self action:@selector(logout:)];
 	logoutItem.foreColor = [UIColor redColor];
 	logoutItem.alignment = NSTextAlignmentCenter;
-        
+
 	NSArray *items = @[menuTitle,
 					 [YCXMenuItem menuItem:@"UserCenter"
                                     image:nil
@@ -52,12 +52,12 @@ pod 'YCXMenu', '~> 0.0.5'
 	[YCXMenu showMenuInView:self.view fromRect:btn.frame menuItems:items selected:^(NSInteger index, YCXMenuItem *item) {
             NSLog(@"%@",item);
 	}];
-	
+
 ```
 
 ##Change
 
-###0.0.6
+###0.0.7
 
 - 添加`+(void)setSeparatorColor:(CGFloat)separatorColor;`方法，可以根据此方法控制分割线的颜色,默认 [UIColor colorWithRed:0.44 green:0.44 blue:0.44 alpha:1];
 - Add function `+(void)setCornerRadius:(CGFloat)cornerRadius;`, you can use this function to set menu's separator color, default [UIColor colorWithRed:0.44 green:0.44 blue:0.44 alpha:1];
@@ -89,4 +89,3 @@ pod 'YCXMenu', '~> 0.0.5'
 ## Licenses
 
 MIT License.
-
