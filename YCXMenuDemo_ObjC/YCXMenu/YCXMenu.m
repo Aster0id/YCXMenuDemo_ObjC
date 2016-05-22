@@ -22,6 +22,9 @@
 #define kMenuViewInsetTop       0
 #define kMenuViewInsetBottom    0
 
+/// 菜单原始的垂直边距值
+const CGFloat kMenuItemMarginY = 8.f;
+
 
 /// 背景色
 static UIColor                      *gTintColor;
@@ -339,8 +342,7 @@ typedef enum {
     const CGFloat kMinMenuItemHeight = 32.f;
     const CGFloat kMinMenuItemWidth = 32.f;
     const CGFloat kMarginX = 10.f;
-    const CGFloat kMarginY = 5.f;
-    
+
     UIFont *titleFont = [YCXMenu titleFont];
     
     CGFloat maxImageWidth = 0;
@@ -363,7 +365,7 @@ typedef enum {
         //const CGSize titleSize = [menuItem.title sizeWithFont:titleFont];
         const CGSize imageSize = menuItem.image.size;
         
-        const CGFloat itemHeight = MAX(titleSize.height, imageSize.height) + kMarginY * 2;
+        const CGFloat itemHeight = MAX(titleSize.height, imageSize.height) + kMenuItemMarginY * 2;
         const CGFloat itemWidth = ((!menuItem.enabled && !menuItem.image) ? titleSize.width : maxImageWidth + titleSize.width) + kMarginX * 4;
         
         if (itemHeight > maxItemHeight)
@@ -433,18 +435,18 @@ typedef enum {
                 
                 titleFrame = (CGRect){
                     kMarginX * 2,
-                    kMarginY,
+                    kMenuItemMarginY,
                     maxItemWidth - kMarginX * 4,
-                    maxItemHeight - kMarginY * 2
+                    maxItemHeight - kMenuItemMarginY * 2
                 };
                 
             } else {
                 
                 titleFrame = (CGRect){
                     titleX,
-                    kMarginY,
+                    kMenuItemMarginY,
                     titleWidth,
-                    maxItemHeight - kMarginY * 2
+                    maxItemHeight - kMenuItemMarginY * 2
                 };
             }
             
@@ -460,7 +462,7 @@ typedef enum {
         
         if (menuItem.image) {
             
-            const CGRect imageFrame = {kMarginX * 2, kMarginY, maxImageWidth, maxItemHeight - kMarginY * 2};
+            const CGRect imageFrame = {kMarginX * 2, kMenuItemMarginY, maxImageWidth, maxItemHeight - kMenuItemMarginY * 2};
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
             imageView.image = menuItem.image;
             imageView.clipsToBounds = YES;
