@@ -88,6 +88,8 @@
         [YCXMenu setHasShadow:YES];
         [YCXMenu setBackgrounColorEffect:YCXMenuBackgrounColorEffectGradient];
         [YCXMenu setTintColor:[UIColor colorWithRed:0.212 green:0.255 blue:0.678 alpha:1]];
+        [YCXMenu setSeparatorColor:[UIColor redColor]];
+        
         [YCXMenu setTitleFont:[UIFont systemFontOfSize:24.0]];
         [YCXMenu showMenuInView:self.view fromRect:btn.frame menuItems:self.items selected:^(NSInteger index, YCXMenuItem *item) {
             NSLog(@"%@",item);
@@ -105,7 +107,7 @@
         menuTitle.titleFont = [UIFont boldSystemFontOfSize:20.0f];
         
         //set logout button
-        YCXMenuItem *logoutItem = [YCXMenuItem menuItem:@"Logout" image:nil target:self action:@selector(logout:)];
+        YCXMenuItem *logoutItem = [YCXMenuItem menuItem:@"退出" image:nil target:self action:@selector(logout:)];
         logoutItem.foreColor = [UIColor redColor];
         logoutItem.alignment = NSTextAlignmentCenter;
         

@@ -12,8 +12,35 @@
 #define kArrowSize      10.0f   //!< 箭头尺寸
 #define kCornerRadius   6.0f    //!< 圆角
 #define kTintColor  [UIColor colorWithRed:0.267 green:0.303 blue:0.335 alpha:1]  //!< 主题颜色
+#define kSelectedColor [UIColor colorWithRed:0.059 green:0.353 blue:0.839 alpha:1.0f]
 #define kTitleFont  [UIFont systemFontOfSize:16.0]
 
+#define kSeparatorInsetLeft     0
+#define kSeparatorInsetRight    0
+#define kSeparatorHeight        0.5
+#define kSeparatorColor [UIColor colorWithRed:0.44 green:0.44 blue:0.44 alpha:1]
+#define kMenuViewInsetTop       0
+#define kMenuViewInsetBottom    0
+
+
+/// 背景色
+static UIColor                      *gTintColor;
+/// 箭头尺寸
+CGFloat                             gArrowSize = kArrowSize;
+/// 圆角
+CGFloat                             gCornerRadius = kCornerRadius;
+/// 字体
+static UIFont                       *gTitleFont;
+/// 背景色效果
+static YCXMenuBackgrounColorEffect   gBackgroundColorEffect = YCXMenuBackgrounColorEffectSolid;
+/// 是否显示阴影
+static BOOL                          gHasShadow = NO;
+/// 选中颜色（默认蓝色）
+static UIColor                      *gSelectedColor;
+/// 分割线颜色
+static UIColor                      *gSeparatorColor;
+
+//@property (nonatomic) UIEdgeInsets separatorInset NS_AVAILABLE_IOS(7_0) UI_APPEARANCE_SELECTOR; // allows customization of the frame of cell separators
 typedef enum {
     
     YCXMenuViewArrowDirectionNone,
@@ -37,8 +64,6 @@ typedef enum {
 
 @end
 
-/// 选中颜色（默认蓝色）
-static UIColor                      *gSelectedColor;
 
 @interface YCXMenuOverlay : UIView
 
@@ -303,7 +328,7 @@ static UIColor                      *gSelectedColor;
     }
 }
 
-- (UIView *) mkContentView {
+- (UIView *)mkContentView {
     for (UIView *v in self.subviews) {
         [v removeFromSuperview];
     }
@@ -355,14 +380,20 @@ static UIColor                      *gSelectedColor;
     const CGFloat titleWidth = maxItemWidth - titleX - kMarginX * 2;
     
     UIImage *selectedImage = [YCXMenuView selectedImage:(CGSize){maxItemWidth, maxItemHeight + 2}];
-    UIImage *gradientLine = [YCXMenuView gradientLine: (CGSize){maxItemWidth - kMarginX * 4, 1}];
+    
+    if (!gSeparatorColor) {
+        gSeparatorColor = kSeparatorColor;
+    }
+    UIImage *gradientLine = [YCXMenuView gradientLineWithColor:gSeparatorColor];
     
     UIView *contentView = [[UIView alloc] initWithFrame:CGRectZero];
     contentView.autoresizingMask = UIViewAutoresizingNone;
     contentView.backgroundColor = [UIColor clearColor];
     contentView.opaque = NO;
-    
-    CGFloat itemY = kMarginY * 2;
+    contentView.layer.cornerRadius = gCornerRadius;
+    [contentView setClipsToBounds:YES];
+
+    CGFloat itemY = kMenuViewInsetTop;
     NSUInteger itemNum = 0;
     
     for (YCXMenuItem *menuItem in _menuItems) {
@@ -375,12 +406,12 @@ static UIColor                      *gSelectedColor;
         itemView.opaque = NO;
         
         [contentView addSubview:itemView];
-        
+
         if (menuItem.enabled) {
             
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.tag = itemNum;
-            button.frame = itemView.bounds;
+            button.frame = CGRectMake(0, 0, itemView.frame.size.width, itemView.frame.size.height);
             button.enabled = menuItem.enabled;
             button.backgroundColor = [UIColor clearColor];
             button.opaque = NO;
@@ -390,7 +421,7 @@ static UIColor                      *gSelectedColor;
                        action:@selector(performAction:)
              forControlEvents:UIControlEventTouchUpInside];
             [button setBackgroundImage:selectedImage forState:UIControlStateHighlighted];
-            
+
             [itemView addSubview:button];
         }
         
@@ -441,18 +472,20 @@ static UIColor                      *gSelectedColor;
         if (itemNum < _menuItems.count - 1) {
             
             UIImageView *gradientView = [[UIImageView alloc] initWithImage:gradientLine];
-            gradientView.frame = (CGRect){kMarginX * 2, maxItemHeight + 1, gradientLine.size};
-            gradientView.contentMode = UIViewContentModeLeft;
+            gradientView.frame = (CGRect){kSeparatorInsetLeft, maxItemHeight, maxItemWidth - kSeparatorInsetLeft - kSeparatorInsetRight, kSeparatorHeight};
+            gradientView.contentMode = UIViewContentModeScaleToFill;
             [itemView addSubview:gradientView];
             
-            itemY += 2;
+            itemY += gradientView.frame.size.height;
+
+            [itemView bringSubviewToFront:gradientView];
         }
         
         itemY += maxItemHeight;
         ++itemNum;
     }
     
-    contentView.frame = (CGRect){0, 0, maxItemWidth, itemY + kMarginY * 2};
+    contentView.frame = (CGRect){0, 0, maxItemWidth, itemY + kMenuViewInsetBottom};
     
     return contentView;
 }
@@ -489,9 +522,8 @@ static UIColor                      *gSelectedColor;
 + (UIImage *)selectedImage:(CGSize)size {
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    if(!gSelectedColor)
-    {
-        gSelectedColor = [UIColor colorWithRed:0.059 green:0.353 blue:0.839 alpha:1.0f];
+    if(!gSelectedColor) {
+        gSelectedColor = kSelectedColor;
     }
     CGContextSetFillColorWithColor(context, [gSelectedColor CGColor]);
     CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));
@@ -500,6 +532,27 @@ static UIColor                      *gSelectedColor;
     return image;
 }
 
++ (UIImage *)gradientLineWithColor:(UIColor *)color {
+
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+
+    UIGraphicsBeginImageContext(rect.size);
+
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+
+    CGContextFillRect(context, rect);
+
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+
+    UIGraphicsEndImageContext();
+
+    return theImage;
+
+}
+
+/*
 + (UIImage *)gradientLine:(CGSize)size {
     const CGFloat locations[5] = {0,0.2,0.5,0.8,1};
     const CGFloat R = 0.44f, G = 0.44f, B = 0.44f;
@@ -510,7 +563,7 @@ static UIColor                      *gSelectedColor;
         R,G,B,0.4,
         R,G,B,0.1
     };
-    
+
     return [self gradientImageWithSize:size locations:locations components:components count:5];
 }
 
@@ -528,6 +581,7 @@ static UIColor                      *gSelectedColor;
     UIGraphicsEndImageContext();
     return image;
 }
+*/
 
 - (void)drawRect:(CGRect)rect {
     [self drawBackground:self.bounds inContext:UIGraphicsGetCurrentContext()];
@@ -683,20 +737,6 @@ static UIColor                      *gSelectedColor;
 #pragma mark - YCXMenu
 /// MenuView
 static YCXMenu                      *gMenu;
-/// 背景色
-static UIColor                      *gTintColor;
-/// 箭头尺寸
-CGFloat                             gArrowSize;
-/// 圆角
-CGFloat                             gCornerRadius;
-/// 字体
-static UIFont                       *gTitleFont;
-/// 背景色效果
-static YCXMenuBackgrounColorEffect   gBackgroundColorEffect = YCXMenuBackgrounColorEffectSolid;
-/// 是否显示阴影
-static BOOL                          gHasShadow = NO;
-
-
 
 @implementation YCXMenu {
     YCXMenuView *_menuView;
@@ -749,7 +789,8 @@ static BOOL                          gHasShadow = NO;
     gCornerRadius = kCornerRadius;
     gBackgroundColorEffect = YCXMenuBackgrounColorEffectSolid;
     gHasShadow = NO;
-    gSelectedColor = [UIColor colorWithRed:0.059 green:0.353 blue:0.839 alpha:1.0f];
+    gSelectedColor = kSelectedColor;
+    gSeparatorColor = kSeparatorColor;
 }
 
 #pragma mark Private Methods
@@ -859,5 +900,15 @@ static BOOL                          gHasShadow = NO;
 {
     gSelectedColor = selectedColor;
 }
++(UIColor *)separatorColor
+{
+    return gSeparatorColor;
+
+}
++(void)setSeparatorColor:(UIColor *)separatorColor
+{
+    gSeparatorColor = separatorColor;
+}
+
 @end
 

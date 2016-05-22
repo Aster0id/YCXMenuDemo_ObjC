@@ -50,4 +50,9 @@ typedef enum {
 // 选中颜色
 + (UIColor*)selectedColor;
 + (void)setSelectedColor:(UIColor*)selectedColor;
+
+// 分割线颜色
++ (UIColor*)separatorColor;
++ (void)setSeparatorColor:(UIColor*)separatorColor;
+
 @end
