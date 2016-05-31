@@ -2,8 +2,7 @@
 ![CocoaPods Version](https://img.shields.io/cocoapods/v/YCXMenu.svg?style=flat)
 [![License](https://img.shields.io/github/license/aster0id/YCXMenuDemo_ObjC.svg?style=flat)](https://github.com/Aster0id/YCXMenuDemo_ObjC/blob/master/LICENSE)
 
-`TCXMenu` is an easy-to-use menu. Reference [kxmenu](https://github.com/kolyvan/kxmenu/) effect
-
+`TCXMenu` is an easy-to-use menu.
 <img src="https://github.com/Aster0id/YCXMenuDemo_ObjC/blob/master/Assets/YCXMenuDemo_ObjC_img1.gif" width="320">
 <img src="https://github.com/Aster0id/YCXMenuDemo_ObjC/blob/master/Assets/YCXMenuDemo_ObjC_img2.gif" width="320">
 
@@ -15,7 +14,7 @@
 ```ruby
 # Your Podfile
 platform :ios, '7.0'
-pod 'YCXMenu', '~> 0.0.9'
+pod 'YCXMenu', '~> 0.0.10'
 ```
 
 ### Manually
@@ -56,6 +55,14 @@ pod 'YCXMenu', '~> 0.0.9'
 ```
 
 ##Change
+
+###0.0.10
+
+因为控件整体使用类方法控制属性及显示/隐藏的操作。因此使用通知的方式获取Menu显示/消失等状态更为方便合理。
+
+- 添加2个通知
+	- YCXMenuAppearNotification. Menu显示时的通知。
+	- YCXMenuDisappearNotification. Menu消失时的通知。
 
 ###0.0.9
 

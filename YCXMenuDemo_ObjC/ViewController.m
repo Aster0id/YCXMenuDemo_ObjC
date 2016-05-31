@@ -9,22 +9,48 @@
 #import "ViewController.h"
 #import "YCXMenu.h"
 
+
 @interface ViewController ()
 
 @property (nonatomic , strong) NSMutableArray *items;
 
 @end
 
+
 @implementation ViewController
 @synthesize items = _items;
+
+
 #pragma mark - Lifecycle Methods
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidAppear) name:YCXMenuAppearNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidDisappear) name:YCXMenuDisappearNotification object:nil];
+
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+#pragma mark - Notification
+
+- (void)menuDidAppear {
+    NSLog(@"menu did appear");
+}
+
+- (void)menuDidDisappear {
+    NSLog(@"menu did disappear");
+}
+
+
 #pragma mark - Actions
+
 - (void)logout:(id)sender {
-    NSLog(@"退出登录");
+    NSLog(@"logout");
 }
 
 - (IBAction)showMenu1FromNavigationBarItem:(id)sender {

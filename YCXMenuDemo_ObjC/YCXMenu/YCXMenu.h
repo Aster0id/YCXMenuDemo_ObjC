@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "YCXMenuItem.h"
 
+// Menu隐藏的通知
+extern NSString * const YCXMenuDisappearNotification;
+// Menu显示的通知
+extern NSString * const YCXMenuAppearNotification;
+
+
 typedef void(^YCXMenuSelectedItem)(NSInteger index, YCXMenuItem *item);
 
 typedef enum {
