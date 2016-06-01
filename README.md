@@ -14,7 +14,7 @@
 ```ruby
 # Your Podfile
 platform :ios, '7.0'
-pod 'YCXMenu', '~> 0.0.10'
+pod 'YCXMenu', '~> 0.0.11'
 ```
 
 ### Manually
@@ -56,9 +56,23 @@ pod 'YCXMenu', '~> 0.0.10'
 
 ##Change
 
+###0.0.11
+
+Menu显示/消失的通知不足以满足需要，现改为4个通知。
+
+- 删除2个通知
+	- ~~YCXMenuAppearNotification. Menu显示时的通知。~~
+	- ~~YCXMenuDisappearNotification. Menu消失时的通知。~~
+
+- 新增4个通知
+	- YCXMenuWillAppearNotification. Menu将要显示时的通知。
+	- YCXMenuDidAppearNotification. Menu已经显示时的通知。
+	- YCXMenuWillDisappearNotification. Menu将要消失时的通知。
+	- YCXMenuDidDisappearNotification. Menu已经消失时的通知。
+	
 ###0.0.10
 
-因为控件整体使用类方法控制属性及显示/隐藏的操作。因此使用通知的方式获取Menu显示/消失等状态更为方便合理。
+因为Menu控件整体使用类方法控制属性及显示/隐藏的操作。因此使用通知的方式获取Menu显示/消失等状态更为方便合理。
 
 - 添加2个通知
 	- YCXMenuAppearNotification. Menu显示时的通知。

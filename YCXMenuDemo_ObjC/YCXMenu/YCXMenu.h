@@ -9,10 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "YCXMenuItem.h"
 
-// Menu隐藏的通知
-extern NSString * const YCXMenuDisappearNotification;
-// Menu显示的通知
-extern NSString * const YCXMenuAppearNotification;
+
+// Menu将要显示的通知
+extern NSString * const YCXMenuWillAppearNotification;
+// Menu已经显示的通知
+extern NSString * const YCXMenuDidAppearNotification;
+// Menu将要隐藏的通知
+extern NSString * const YCXMenuWillDisappearNotification;
+// Menu已经隐藏的通知
+extern NSString * const YCXMenuDidDisappearNotification;
 
 
 typedef void(^YCXMenuSelectedItem)(NSInteger index, YCXMenuItem *item);

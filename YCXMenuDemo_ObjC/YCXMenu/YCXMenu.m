@@ -9,8 +9,10 @@
 #import "YCXMenu.h"
 #import <QuartzCore/QuartzCore.h>
 
-NSString * const YCXMenuDisappearNotification = @"YCXMenuDisappearNotification";
-NSString * const YCXMenuAppearNotification = @"YCXMenuAppearNotification";
+NSString * const YCXMenuWillAppearNotification = @"YCXMenuWillAppearNotification";
+NSString * const YCXMenuDidAppearNotification = @"YCXMenuDidAppearNotification";
+NSString * const YCXMenuWillDisappearNotification = @"YCXMenuWillDisappearNotification";
+NSString * const YCXMenuDidDisappearNotification = @"YCXMenuDidDisappearNotification";
 
 #define kArrowSize      10.0f   //!< 箭头尺寸
 #define kCornerRadius   6.0f    //!< 圆角
@@ -291,6 +293,8 @@ typedef enum {
     const CGRect toFrame = self.frame;
     self.frame = (CGRect){self.arrowPoint, 1, 1};
 
+    [[NSNotificationCenter defaultCenter] postNotificationName:YCXMenuWillAppearNotification object:nil];
+
     [UIView animateWithDuration:0.2 animations:^(void) {
 
         self.alpha = 1.0f;
@@ -299,12 +303,23 @@ typedef enum {
     } completion:^(BOOL completed) {
         _contentView.hidden = NO;
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:YCXMenuAppearNotification object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:YCXMenuDidAppearNotification object:nil];
     }];
 }
 
 - (void)dismissMenu:(BOOL)animated {
     if (self.superview) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:YCXMenuWillDisappearNotification object:nil];
+
+        __weak typeof(self) weakSelf = self;
+        void (^removeView)(void) = ^(void) {
+            if ([weakSelf.superview isKindOfClass:[YCXMenuOverlay class]])
+                [weakSelf.superview removeFromSuperview];
+            [weakSelf removeFromSuperview];
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:YCXMenuDidDisappearNotification object:nil];
+        };
+
         if (animated) {
             _contentView.hidden = YES;
             const CGRect toFrame = (CGRect){self.arrowPoint, 1, 1};
@@ -312,18 +327,12 @@ typedef enum {
                 self.alpha = 0;
                 self.frame = toFrame;
             } completion:^(BOOL finished) {
-                if ([self.superview isKindOfClass:[YCXMenuOverlay class]])
-                    [self.superview removeFromSuperview];
-                [self removeFromSuperview];
+                removeView();
             }];
         }
         else {
-            if ([self.superview isKindOfClass:[YCXMenuOverlay class]])
-                [self.superview removeFromSuperview];
-            [self removeFromSuperview];
+            removeView();
         }
-
-        [[NSNotificationCenter defaultCenter] postNotificationName:YCXMenuDisappearNotification object:nil];
     }
     [YCXMenu sharedMenu].isShow = NO;
 }

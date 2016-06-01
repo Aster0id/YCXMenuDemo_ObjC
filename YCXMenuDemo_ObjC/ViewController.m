@@ -26,8 +26,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidAppear) name:YCXMenuAppearNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidDisappear) name:YCXMenuDisappearNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuWillAppear) name:YCXMenuWillAppearNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidAppear) name:YCXMenuDidAppearNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuWillDisappear) name:YCXMenuWillDisappearNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidDisappear) name:YCXMenuDidDisappearNotification object:nil];
 
 }
 
@@ -38,8 +40,16 @@
 
 #pragma mark - Notification
 
+- (void)menuWillAppear {
+    NSLog(@"menu will appear");
+}
+
 - (void)menuDidAppear {
     NSLog(@"menu did appear");
+}
+
+- (void)menuWillDisappear {
+    NSLog(@"menu will disappear");
 }
 
 - (void)menuDidDisappear {
